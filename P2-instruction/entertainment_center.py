@@ -35,7 +35,6 @@ movieList = {
 }
 
 movies = []
-for val in movieList:
-    movies.push(val)
-
+for k,val in movieList.items():
+    movies.append(media.movie(val))
 fresh_tomatoes.open_movies_page(movies)
