@@ -17,6 +17,14 @@ main_page_head = '''
         body {
             padding-top: 80px;
         }
+        h2 {
+            width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
         #trailer .modal-dialog {
             margin-top: 200px;
             width: 640px;
@@ -121,7 +129,7 @@ main_page_content = '''
 movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer_src="{trailer_src}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
+    <h2 title="{movie_title}">{movie_title}</h2>
 </div>
 '''
 
@@ -136,8 +144,6 @@ def create_movie_tiles_content(movies):
         youtube_id_match = youtube_id_match or re.search(r'(?<=be/)[^&#]+', trailer_url)
         trailer_youku_id = youku_id_match.group(2) if youku_id_match else None
         trailer_youtube_id = youtube_id_match.group(0) if youtube_id_match else None
-        print youku_id_match
-        exit()
         if trailer_youku_id != None:
           trailer_src = 'http://player.youku.com/embed/' + trailer_youku_id
         else:
